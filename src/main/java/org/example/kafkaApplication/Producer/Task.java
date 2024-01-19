@@ -28,6 +28,7 @@ public class Task {
         this.dateOfSubmission = dateOfSubmission;
     }
 
+
     /*public String toJson() {
         // Convert Task object to JSON format (You can use a library like Jackson or Gson)
         return String.format("{\"taskId\":\"%s\",\"studentId\":\"%s\",\"subject\":\"%s\",\"dateOfSubmission\":\"%s\"}",

@@ -1,4 +1,5 @@
 package org.example.kafkaApplication.Producer;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.*;
 import java.util.Properties;
 
@@ -17,12 +18,9 @@ public class ProducerMain {
                 String dateOfSubmission = "2023-01-01";
                 try {
                 Task task = new Task(taskId, studentId, subject, dateOfSubmission);
-                    //System.out.println(task.toJson());
-                    //String jsonTask = task.toString();
-                    //System.out.println(jsonTask);
-
-
-                System.out.println("Sending message: " + task);
+                ObjectMapper obj = new ObjectMapper();
+                String jsonΤask = obj.writeValueAsString(task);
+                System.out.println(jsonΤask);
                 ProducerRecord<String, Task> record = new ProducerRecord<>("task.events", task);
                 producer.send(record);}
                 catch (Exception e) {

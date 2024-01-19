@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
+
 public class ConsumerMain {
     public static void main(String[] args) {
         new ConsumerMain().runConsumer();
@@ -34,17 +35,14 @@ public class ConsumerMain {
             while (true) {
                 ConsumerRecords<String, Task> records = consumer.poll(Duration.ofMillis(100));
                 records.forEach(record -> {
-                    // Deserialize the JSON string to an object using Jackson
-                    //String jsonString = record.value();
                     try {
-                        // Replace YourClass with the actual class of your JSON objects
-                        //Task deserializedObject = objectMapper.readValue(jsonString, Task.class);
-                        //JsonNode jsonNode = objectMapper.readTree(jsonString);
-                        //String prettyJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
-                        //System.out.println("Received message: " + deserializedObject.toString());
-                        //System.out.println("Received message:\n" + prettyJson);
+
+
                         Task receivedTask = record.value();
-                        System.out.println("Received message: " + receivedTask);
+                        ObjectMapper obj = new ObjectMapper();
+                        String jsonreceivedTask = obj.writeValueAsString(receivedTask);
+                        System.out.println(jsonreceivedTask);
+
                     } catch (Exception e) {
                         System.out.println("problem in consumermain");
                     }
